@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Categories {
-    
+
     @Id
     @GeneratedValue
     private int id;
