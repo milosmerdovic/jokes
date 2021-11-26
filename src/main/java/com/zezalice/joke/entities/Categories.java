@@ -1,5 +1,7 @@
 package com.zezalice.joke.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,7 +15,7 @@ public class Categories {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "categories")
-//    @JsonIgnore
+    @JsonIgnore
     private Set<Jokes> jokes;
 
     public Categories() {

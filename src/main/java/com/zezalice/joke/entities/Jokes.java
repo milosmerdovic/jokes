@@ -63,8 +63,8 @@ public class Jokes {
         this.display = display;
     }
 
-    public int getCategories() {
-        return categories.getId(); // with getId the infinite recursion will be omitted, no need for @JsonIgnore usage
+    public Categories getCategories() {
+        return categories;
     }
 
     public void setCategories(Categories categories) {
