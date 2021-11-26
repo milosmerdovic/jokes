@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.NoSuchElementException;
+
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/jokes")
@@ -19,6 +22,16 @@ public class JokesController {
     @GetMapping
     public Iterable listAll() {
         return jokeService.listAllJokes();
+    }
+
+    @GetMapping("/{id}")
+    public Jokes findOneById(@PathVariable int id) {
+        Jokes joke = jokeService.getJoke(id);
+        if (joke != null) {
+            return joke;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
+        }
     }
 
     @PostMapping
@@ -33,7 +46,7 @@ public class JokesController {
             Jokes existingJoke = jokeService.getJoke(id);
             jokes.setId(id);
             jokeService.saveJoke(jokes);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
