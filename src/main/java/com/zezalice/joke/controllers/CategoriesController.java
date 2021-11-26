@@ -1,7 +1,7 @@
 package com.zezalice.joke.controllers;
 
-import com.zezalice.joke.entities.Jokes;
-import com.zezalice.joke.service.JokeService;
+import com.zezalice.joke.entities.Categories;
+import com.zezalice.joke.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/jokes")
-public class JokesController {
+@RequestMapping("/api/categories")
+public class CategoriesController {
 
     @Autowired
-    private JokeService jokeService;
+    private CategoryService categoryService;
 
     @GetMapping
     public Iterable listAll() {
-        return jokeService.listAllJokes();
+        return categoryService.listAllCategories();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Jokes create(@RequestBody Jokes joke) {
-        return jokeService.saveJoke(joke);
+    public Categories create(@RequestBody Categories category) {
+        return categoryService.saveCategory(category);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Jokes jokes, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody Categories category, @PathVariable Integer id) {
         try {
-            Jokes existingJoke = jokeService.getJoke(id);
-            jokes.setId(id);
-            jokeService.saveJoke(jokes);
+            Categories existingCategory = categoryService.getCategory(id);
+            category.setId(id);
+            categoryService.saveCategory(category);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -41,6 +41,6 @@ public class JokesController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-        jokeService.deleteJoke(id);
+        categoryService.deleteCategory(id);
     }
 }

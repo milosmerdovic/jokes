@@ -16,19 +16,19 @@ public class Jokes {
     private Date input;
     @Column(name = "display_date")
     private Date display;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Categories.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Categories.class)
     @JoinColumn(name = "category_id")
-    private int categoryId;
+    private Categories categories;
 
     public Jokes() {
     }
 
-    public Jokes(int id, String joke, Date input, Date display, int categoryId) {
+    public Jokes(int id, String joke, Date input, Date display, Categories categories) {
         this.id = id;
         this.joke = joke;
         this.input = input;
         this.display = display;
-        this.categoryId = categoryId;
+        this.categories = categories;
     }
 
     public int getId() {
@@ -63,12 +63,11 @@ public class Jokes {
         this.display = display;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategories() {
+        return categories.getId(); // with getId the infinite recursion will be omitted, no need for @JsonIgnore usage
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategories(Categories categories) {
+        this.categories = categories;
     }
-
 }
