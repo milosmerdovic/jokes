@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "joke_categories")
 public class Categories {
 
     @Id

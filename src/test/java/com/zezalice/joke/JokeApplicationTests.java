@@ -8,6 +8,6 @@ class JokeApplicationTests {
 
     @Test
     void contextLoads() {
-    }
 
+    }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class JokeService {
@@ -13,7 +15,7 @@ public class JokeService {
     @Autowired
     private JokesRepository jokesRepository;
 
-    public Iterable<Jokes> listAllJokes() {
+    public List<Jokes> listAllJokes() {
         return jokesRepository.findAll();
     }
 
