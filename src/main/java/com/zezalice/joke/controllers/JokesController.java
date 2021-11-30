@@ -1,7 +1,6 @@
 package com.zezalice.joke.controllers;
 
 import com.zezalice.joke.entities.Jokes;
-import com.zezalice.joke.repositories.JokesRepository;
 import com.zezalice.joke.service.JokeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +16,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/api/v1/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class JokesController {
-
-    @Autowired
-    private JokesRepository jokesRepository;
 
     @Autowired
     private JokeService jokeService;
