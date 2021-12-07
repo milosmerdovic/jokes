@@ -7,23 +7,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api/jokes")
+@RequestMapping("/api/v1/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JokesController {
 
     @Autowired
     private JokeService jokeService;
 
-    @GetMapping
-    public Iterable listAll() {
+    @GetMapping("/jokes")
+    public List<Jokes> listAll() {
         return jokeService.listAllJokes();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/jokes/{id}")
     public Jokes findOneById(@PathVariable int id) {
         return jokeService.getJoke(id);
     }
