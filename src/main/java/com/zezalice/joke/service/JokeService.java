@@ -28,6 +28,9 @@ public class JokeService {
         return jokesRepository.findById(id).get();
     }
 
+    public Jokes getRandomJoke() {
+        return jokesRepository.getRandomJoke();
+    }
     public void deleteJoke(Integer id) {
         jokesRepository.deleteById(id);
     }

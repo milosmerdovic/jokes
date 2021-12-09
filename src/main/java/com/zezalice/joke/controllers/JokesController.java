@@ -25,6 +25,11 @@ public class JokesController {
         return jokeService.listAllJokes();
     }
 
+    @GetMapping("/random-joke")
+    public Jokes getRandomJoke() {
+        return jokeService.getRandomJoke();
+    }
+
     @GetMapping("/jokes/{id}")
     public Jokes findOneById(@PathVariable int id) {
         return jokeService.getJoke(id);
