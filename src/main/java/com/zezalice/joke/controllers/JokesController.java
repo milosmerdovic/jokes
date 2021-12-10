@@ -28,6 +28,18 @@ public class JokesController {
     @GetMapping("/random-joke")
     public Jokes getRandomJoke() {
         return jokeService.getRandomJoke();
+
+        // Uncomment following block of code in order to parse wrong characters into serbian latin letters
+
+        /*Jokes randJoke = jokeService.getRandomJoke();
+        String jokeText = randJoke.getJoke();
+        System.out.println(jokeText);
+
+        jokeText = new String(jokeText.getBytes("windows-1250"), "UTF-8");
+
+        randJoke.setJoke(jokeText);
+
+        return randJoke;*/
     }
 
     @GetMapping("/jokes/{id}")

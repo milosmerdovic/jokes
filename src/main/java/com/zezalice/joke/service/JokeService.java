@@ -31,6 +31,11 @@ public class JokeService {
     public Jokes getRandomJoke() {
         return jokesRepository.getRandomJoke();
     }
+
+    public List<Jokes> getRandomJokeUsingFunction() {
+        return jokesRepository.getRandomJokeFunction();    // in final controller implementation a single joke can be called by z[0];
+    }
+
     public void deleteJoke(Integer id) {
         jokesRepository.deleteById(id);
     }
