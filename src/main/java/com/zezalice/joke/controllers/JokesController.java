@@ -47,6 +47,16 @@ public class JokesController {
         return jokeService.getJoke(id);
     }
 
+    @GetMapping("/search-jokes")
+    public List<Jokes> searchJokes(@RequestParam("query") String query) {
+        if (query != null) {
+            System.out.println(jokeService.searchJokes(query));
+            return jokeService.searchJokes(query);
+        } else {
+            return jokeService.listAllJokes();
+        }
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Jokes create(@RequestBody Jokes joke) {
