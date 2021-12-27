@@ -25,9 +25,36 @@ public class JokesController {
         return jokeService.listAllJokes();
     }
 
+    @GetMapping("/random-joke")
+    public Jokes getRandomJoke() {
+        return jokeService.getRandomJoke();
+
+        // Uncomment following block of code in order to parse wrong characters into serbian latin letters
+
+        /*Jokes randJoke = jokeService.getRandomJoke();
+        String jokeText = randJoke.getJoke();
+        System.out.println(jokeText);
+
+        jokeText = new String(jokeText.getBytes("windows-1250"), "UTF-8");
+
+        randJoke.setJoke(jokeText);
+
+        return randJoke;*/
+    }
+
     @GetMapping("/jokes/{id}")
     public Jokes findOneById(@PathVariable int id) {
         return jokeService.getJoke(id);
+    }
+
+    @GetMapping("/search-jokes")
+    public List<Jokes> searchJokes(@RequestParam("query") String query) {
+        if (query != null) {
+            System.out.println(jokeService.searchJokes(query));
+            return jokeService.searchJokes(query);
+        } else {
+            return jokeService.listAllJokes();
+        }
     }
 
     @PostMapping

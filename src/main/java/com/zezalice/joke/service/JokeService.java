@@ -19,6 +19,10 @@ public class JokeService {
         return jokesRepository.findAll();
     }
 
+    public List<Jokes> searchJokes(String query) {
+        return jokesRepository.findBySearchQuery(query);
+    }
+
     public Jokes saveJoke(Jokes joke) {
         jokesRepository.save(joke);
         return joke;
@@ -27,6 +31,14 @@ public class JokeService {
     public Jokes getJoke(Integer id) {
         return jokesRepository.findById(id).get();
     }
+
+    public Jokes getRandomJoke() {
+        return jokesRepository.getRandomJoke();
+    }
+
+    /*public List<Jokes> getRandomJokeUsingFunction() {
+        return jokesRepository.getRandomJokeFunction();    // in final controller implementation a single joke can be called by z[0];
+    }*/
 
     public void deleteJoke(Integer id) {
         jokesRepository.deleteById(id);
